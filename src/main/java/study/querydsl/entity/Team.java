@@ -15,13 +15,20 @@ public class Team {
     @GeneratedValue
     @Column(name = "team_id")
     private Long id;
-
     private String name;
 
     @OneToMany(mappedBy = "team")
-    private List<Member> members = new ArrayList<>();
+    List<Member> members = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "member_id")
+    Member leader;
 
     public Team(String name) {
         this.name = name;
+    }
+
+    public Team(Long id){
+        this.id = id;
     }
 }
